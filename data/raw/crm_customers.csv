@@ -1,0 +1,174 @@
+customer_id,company_name,industry,city,state,account_manager,created_date,status
+C-0138,Longford Shopping Centers,Retail,New Rochelle,NY,S. Patel,2023-07-07,Active
+C-0519,Dunmore Market Group,Retail,Philadelphia,Pa.,J. Kim,11/21/2019,Active
+C-0288,Kentfield Hotels,Hospitality,Stamford,Connecticut,R. O'Donnell,2022-03-28,Active
+C-0160, Kentfield Freight Services,Logistics,Yonkers,NY,S. Patel,2023-08-05,Active
+C-0795,Kestrel Retail Group.,Retail,Paramus,New Jersey,T. Alvarez,06/28/2026,Active
+C-0625,Bellhaven Warehousing,logistics,Worcester,MA,S. Patel,04/12/2022,Active
+C-0814,Alden Freight,Logistics,Worcester,MA,T. Alvarez,08/24/2021,Active
+C-0576,Quill Hospitality Group,Hospitality,Allentown,PA,J. Kim,08/04/2024,Active
+C-0444,Vernon Resorts,Hospitality,Allentown,Pennsylvania,J. Kim,11/01/2021,Active
+C-0241,Alden Freight Services,Logistics,Worcester,MA,T. Alvarez,2020-06-14,Active
+C-0761,Blakely Medical Center,Healthcare,Albany,NY,T. Alvarez,10/17/2020,Inactive
+C-0512,Ashford Freight Services,Logistics,Queens,NY,,2019-03-09,Active
+C-0658,Tilden Academy,Education,Scranton,PA,S. Patel,11/06/2022,Active
+C-0196,Juniper Property Group,Real Estate / Property,White Plains,NY,S. Patel,09/16/2021,Churned
+C-0744,Yale Park College,K-12 / Higher Ed,Bridgeport,CT,T. Alvarez,05/15/2025,Active
+C-0709,Saxton Warehousing,Logistics,Jersey City,NJ,S. Patel,2024-03-05,Active
+C-0330,Marlow Property Management,Property Management,Yonkers,NY,J. Kim,2022-08-26,inactive
+C-0556,Newhall Warehousing,Logistics,Norwalk,CT,S. Patel,2023-01-22,Active
+C-0324,Jessup Care Partners,Healthcare,Queens,NY,S. Patel,2024-03-09,Active
+C-0612,Linden Stores Inc,Retail,Stamford,CT,J. Kim,04/11/2020,Active
+C-0701,Bayview Hospitality Group,Hospitality,New Rochelle,NY,,10/10/2020,Churned
+C-0705,Longford Industries,Industrial/Manufacturing,Allentown,PA,J. Kim,09/08/2021,Active
+C-0706,Brixton Fabrication,Manufacturing,Boston,MA,,03/20/2023,Active
+C-0630,Union Square Freight Services,Logistics & Distribution,Springfield,MA,T. Alvarez,04/26/2020,Active
+C-0613,Southgate Realty Partners,Property Management,Hartford,CT,S. Patel,12/17/2023,Active
+C-0462,Pelham Realty Partners,Property Management,Bridgeport,CT,J. Kim,2024-11-24,Active
+C-0309,Quantock Hospitality Group,Hospitality,Brooklyn,NY,T. Alvarez,07/23/2022,Active
+C-0433,Dunmore Health System,Health Care,Stamford,CT,J. Kim,05/12/2019,Active
+C-0213,Vista Stores Inc,Retail,Worcester,MA,J. Kim,02/20/2025,Active
+C-0150,Gladstone Property Group,Property Mgmt,Boston,MA,T. Alvarez,2020-08-26,Active
+C-0825,Quantock Hospitality Grp,Hotels & Hospitality,Brooklyn,N.Y.,T. Alvarez,02/25/2024,Active
+C-0565,Bellhaven Commercial Realty,Property Management,Jersey City,New Jersey,S. Patel,06/19/2019,Inactive
+C-0669,Alden Property Management,Property Management,Albany,N.Y.,T. Alvarez,02/28/2024,Active
+C-0800,LONGFORD SHOPPING CENTERS,Retail ,New Rochelle,NY,T. Alvarez,2024-04-08,Active
+C-0235,Overlook Shopping Centers,retail,Worcester,MA,T. Alvarez,2019-02-09,Active
+C-0541,Halstead Stores Inc,Retail,Albany,New York,,12/04/2024,Active
+C-0836,Lowell Warehousing Co.,Logistics & Distribution,Queens,NY,T. Alvarez,10/07/2024,Active
+C-0264,Talbot Precision Products,Manufacturing,Allentown,PA,T. Alvarez,2023-08-21,Active
+C-0820,"Gladstone Property Group, Inc.",Property Management,Boston,MA,J. Kim,03/23/2021,Active
+C-0340,Nolan Distribution Co,Logistics,Yonkers,NY,J. Kim,06/04/2020,Active
+C-0574,Quantock Retail Group,Retail ,Brooklyn,N.Y.,J. Kim,2020-06-25,Active
+C-0112,Veridian Health System,Healthcare,Hartford,CT,R. O'Donnell,11/17/2021,Active
+C-0192,Tremont Preparatory School,Education,Albany,New York,R. O'Donnell,2024-08-12,Active
+C-0347,Ustick Precision Products,Manufacturing,Norwalk,CT,T. Alvarez,2022-02-27,Active
+C-0763,Ashby Property Management,Property Management,Edison,NJ,J. Kim,10/17/2020,Active
+C-0424,Arbor Hotels,hospitality,Boston,MA,J. Kim,2019-08-04,Active
+C-0635,Draymore Hotels,Hotels & Hospitality,Bridgeport,CT,S. Patel,08/27/2024,Active
+C-0506,Foxhall Property Group,Property Management,Hartford,CT,S. Patel,2022-08-25,Active
+C-0689,Rutledge Commercial Realty,Property Management,Boston,MA,T. Alvarez,11/15/2020,Active
+C-0637,Eastport Manufacturing,Manufacturing,New Haven,CT,R. O'Donnell,2022-08-20,Active
+C-0582,Merrit Shopping Centers,Retail,Boston,MA,R. O'Donnell,11/19/2022,Active
+C-0733,Thistle Medical Center,Healthcare,Queens,NY,R. O'Donnell,07/05/2021,Inactive
+C-0475,Gorham Market Group,Retail,Philadelphia,PA,T. Alvarez,2019-11-27,Active
+C-0248,Dunmore Shopping Centers,Retail,Brooklyn,New York,S. Patel,05/10/2019,Active
+C-0320, Nolan Commercial Realty,Property Management,New Haven,CT,S. Patel,2023-11-09,Churned
+C-0129,Stonebridge Hotels,Hotels & Hospitality,Boston,MA,T. Alvarez,2021-10-11,Active
+C-0387, Selwyn Hospitality Group,Hospitality,Bridgeport,Ct.,R. O'Donnell,06/11/2022,Active
+C-0695,Irving Market Group,Retail,Queens,NY,S. Patel,02/01/2020,Active
+C-0779,Jessup Retail Group,Retail,Philadelphia,PA,T. Alvarez,03/27/2022,Active
+C-0343,Kestrel Realty Partners,Real Estate / Property,Boston,Mass.,,05/20/2025,Active
+C-0555,Thistle Freight Services,Logistics & Distribution,Springfield,Mass.,R. O'Donnell,2022-08-11,Active
+C-0233,Ironside Fabrication,Manufacturing,Stamford,CT,R. O'Donnell,06/09/2022,Active
+C-0429,Evergreen Clinic Group,Healthcare,Newark,N.J.,S. Patel,2021-11-28,Active
+C-0773,Overlook Stores Inc,Retail,Brooklyn,New York,T. Alvarez,2019-10-16,Active
+C-0156,Kestrel Retail Group,Retail,Paramus,New Jersey,S. Patel,02/22/2024,Active
+C-0679,Yates Commercial Realty,Property Management,Jersey City,NJ,,2022-06-15,Active
+C-0219,Silverlake Resorts,Hospitality,Jersey City,NJ,J. Kim,2021-07-26,Active
+C-0359,Danforth Inns,Hospitality,New Rochelle,NY,S. Patel,04/06/2020,Active
+C-0471, Lowell Preparatory School,Education,Scranton,Pa.,T. Alvarez,11/12/2022,Active
+C-0307,Redstone Property Group,Property Management,White Plains,NY,J. Kim,06/06/2021,Active
+C-0180,Islington Logistics,logistics,New Haven,CT,R. O'Donnell,01/19/2020,Active
+C-0174,Arbor College,Education,Norwalk,CT,S. Patel,07/09/2019,Active
+C-0591,Kenmore Academy,Education,White Plains,New York,R. O'Donnell,09/05/2022,Active
+C-0349,Dover Market Group,Retail,New Haven,CT,J. Kim,10/03/2024,Active
+C-0572,Rockville Realty Partners,Property Management,Philadelphia,PA,S. Patel,02/14/2021,Active
+C-0200,Nash Manufacturing,Manufacturing,New Rochelle,NY,,09/23/2022,Active
+C-0374,Upton Academy,Education,Philadelphia,PA,T. Alvarez,2022-12-11,Active
+C-0561,Lakeside Realty Partners,Property Management,Hartford,CT,R. O'Donnell,03/05/2022,Inactive
+C-0252,Jessup Precision Products,Manufacturing,Brooklyn,NY,T. Alvarez,03/01/2020,Active
+C-0226,Loxley Fabrication,Manufacturing,Norwalk,CT,R. O'Donnell,2024-08-07,Active
+C-0714,Oakes Retail Group,Retail,Worcester,MA,J. Kim,2020-03-14,Active
+C-0354,Eldridge Logistics,Logistics,Paramus,NJ,T. Alvarez,07/10/2023,Active
+C-0641,Thornton Health System,Healthcare,Bridgeport,Connecticut,J. Kim,2022-10-18,Active
+C-0133,Ironside School District,education,Boston,MA,J. Kim,03/24/2024,Active
+C-0481,Vista Commercial Realty,Property Management,Newark,N.J.,T. Alvarez,07/19/2023,Active
+C-0458, Vantage Shopping Centers,Retail,Scranton,PA,,2025-09-04,Active
+C-0419,Quimby School District,Education,Jersey City,New Jersey,S. Patel,2022-12-26,Active
+C-0605,Alden Hospitality Group,Hospitality,Philadelphia,Pennsylvania,T. Alvarez,05/18/2019,Active
+C-0452,Norwood School District,Education,Brooklyn,NY,R. O'Donnell,10/26/2020,Active
+C-0507,Kirkwood Preparatory School,Education ,Scranton,PA,S. Patel,11/01/2022,Active
+C-0329,Wadsworth Health System,Healthcare,New Rochelle,NY,,2023-12-09,Active
+C-0757,Fallbrook Property Group,Real Estate / Property,Worcester,Mass.,S. Patel,11/20/2023,Active
+C-0740,Yardley Commercial Realty,Property Mgmt,Yonkers,NY,J. Kim,2019-05-13,Active
+C-0346,Fallbrook Commercial Realty,Property Management,Worcester,MA,T. Alvarez,2019-01-18,Active
+C-0486, Arbor Logistics,Logistics,Allentown,PA,J. Kim,2022-05-07,Active
+C-0273,Verona Warehousing,Logistics & Distribution,Queens,NY,T. Alvarez,01/07/2022,Active
+C-0105,Brixton Property Group,Real Estate / Property,Stamford,Connecticut,J. Kim,2021-09-04,Active
+C-0525,Quill Clinic Group,Medical,Jersey City,NJ,J. Kim,07/11/2021,Active
+C-0404,Zephyr Realty Partners,Property Management,Brooklyn,NY,S. Patel,07/27/2021,Active
+C-0254, Ravenwood Academy,Education,White Plains,NY,T. Alvarez,08/13/2022,Active
+C-0704,Larkspur Property Group,Property Management,Paramus,N.J.,R. O'Donnell,10/28/2025,Active
+C-0448,Gorham Realty Partners,Property Management,Boston,Massachusetts,S. Patel,2022-12-09,Active
+C-0193,Rockville Stores Inc,Retail,Worcester,MA,R. O'Donnell,2019-03-09,Active
+C-0141,Delmar Stores Inc,retail,Springfield,MA,J. Kim,04/03/2020,Active
+C-0262,Emberly Market Group,Retail,Queens,New York,S. Patel,2025-03-20,Active
+C-0784,"Dunmore Shopping Centers, Inc.",Retail,Brooklyn,NY,R. O'Donnell,2021-04-20,Active
+C-0207,Vantage Property Management,property management,Jersey City,New Jersey,J. Kim,06/26/2021,Active
+C-0631,Jamesport Shopping Centers,Retail,Hartford,Connecticut,S. Patel,02/10/2023,Active
+C-0277,Verona Industries,Manufacturing,Edison,NJ,S. Patel,2021-05-25,Active
+C-0284,Vernon Realty Partners,Property Management,Newark,NJ,T. Alvarez,2022-12-06,Active
+C-0415,Larkspur Fabrication,Industrial/Manufacturing,Scranton,Pennsylvania,S. Patel,08/18/2020,Active
+C-0246,Fallbrook Distribution Co,Logistics & Distribution,Scranton,Pennsylvania,S. Patel,2022-12-10,Active
+C-0717,Paxton Property Management,Property Management,Bridgeport,Connecticut,,2020-10-19,Active
+C-0642,Warner Property Management,property management,Yonkers,New York,T. Alvarez,2020-11-22,Active
+C-0671,Sutton Precision Products,manufacturing,Paramus,New Jersey,R. O'Donnell,01/11/2025,Active
+C-0485,Claremont Fabrication,manufacturing,New Rochelle,NY,T. Alvarez,04/15/2021,Active
+C-0449,Middleton Fabrication,Manufacturing,Boston,Massachusetts,T. Alvarez,12/10/2021,Active
+C-0430,Franklin Manufacturing,manufacturing,Yonkers,New York,T. Alvarez,04/24/2021,Active
+C-0557,Hayes Preparatory School,Education,White Plains,NY,,06/14/2019,Active
+C-0678, Kentfield Resorts,Hospitality,Bridgeport,CT,R. O'Donnell,07/20/2019,Active
+C-0124,Harborview Logistics,logistics,Newark,NJ,,09/25/2021,Active
+C-0240,Gladstone Property Management,Property Management,Queens,New York,T. Alvarez,2023-02-13,Active
+C-0255,Arbor Distribution Co,Logistics,Springfield,MA,S. Patel,04/28/2023,Inactive
+C-0534,Selwyn Industries,Manufacturing,Norwalk,Ct.,,2025-08-10,Active
+C-0726,Ellery Commercial Realty,Property Management,Brooklyn,NY,J. Kim,03/15/2019,Inactive
+C-0636,Piermont Property Group,Real Estate / Property,Newark,N.J.,R. O'Donnell,2024-12-08,Active
+C-0469,Ellery Fabrication,Industrial/Manufacturing,Springfield,MA,R. O'Donnell,03/09/2021,Active
+C-0686,Redstone Market Group,retail,Albany,New York,T. Alvarez,2020-01-05,Active
+C-0363,Saxton Distribution Co,Logistics,Yonkers,NY,R. O'Donnell,12/28/2021,Active
+C-0493,Addison Stores Inc,Retail,New Haven,Connecticut,J. Kim,02/27/2020,Active
+C-0185,Rosedale Health System,Healthcare,Philadelphia,Pa.,R. O'Donnell,2023-10-17,Active
+C-0601,Winslow Academy,Education,Scranton,PA,J. Kim,08/28/2025,Active
+C-0663,Middleton Commercial Realty,Property Management,White Plains,NY,R. O'Donnell,2024-11-10,Active
+C-0266,Lowell Warehousing,Logistics,Queens,NY,J. Kim,03/05/2024,Active
+C-0742,Tremont Inns,Hospitality,Queens,NY,S. Patel,12/11/2025,Active
+C-0830,Delmar Stores,Retail,Springfield,MA,S. Patel,09/02/2022,Active
+C-0369,Gorham Commercial Realty,Property Management,Boston,MA,R. O'Donnell,03/04/2025,Active
+C-0411,Montrose College,Education,Philadelphia,PA,R. O'Donnell,02/09/2020,Active
+C-0182,Ironside Property Group,Property Management,Springfield,MA,J. Kim,2023-02-28,Active
+C-0807,OVERLOOK SHOPPING CENTERS,Retail,Worcester,MA,J. Kim,10/23/2020,Active
+C-0295,Verona Clinic Group,Health Care,Queens,New York,T. Alvarez,2022-05-25,Active
+C-0531,Mercer Warehousing,Logistics,Boston,MA,R. O'Donnell,06/11/2025,Active
+C-0619,Claremont Commercial Realty,Property Management,Danbury,CT,R. O'Donnell,2019-07-12,inactive
+C-0189,Merrit Property Group,Property Management,Allentown,PA,T. Alvarez,02/01/2021,Active
+C-0117, Kingsport School District,Education,White Plains,NY,J. Kim,03/12/2021,Active
+C-0334,Birchwood Clinic Group,healthcare ,Boston,MA,R. O'Donnell,09/12/2023,Active
+C-0648,Umberland Resorts,Hospitality,Springfield,MA,R. O'Donnell,08/02/2022,Active
+C-0793,Wadsworth Health,Healthcare,New Rochelle,New York,,01/06/2026,Active
+C-0547,Westbrook Manufacturing,Manufacturing,Philadelphia,PA,J. Kim,01/20/2023,Active
+C-0640,Mercer Property Group,Property Management,Philadelphia,PA,J. Kim,05/08/2019,Inactive
+C-0398,Juniper Health System,Healthcare,Springfield,MA,R. O'Donnell,11/15/2022,Active
+C-0391,Bramford Clinic Group,Medical,Newark,NJ,,06/02/2025,Active
+C-0791,"Tremont Preparatory School, Inc.",Education,Albany,NY,,02/23/2026,Active
+C-0146,Claremont Property Management,Property Management,Yonkers,NY,S. Patel,06/03/2019,Active
+C-0590,Quimby Preparatory School,Education,Brooklyn,NY,,2019-10-20,Active
+C-0400,Jubilee Academy,Education,Edison,NJ,S. Patel,04/23/2023,inactive
+C-0722,Stanhope Fabrication,Industrial/Manufacturing,Boston,MA,S. Patel,2019-08-21,Active
+C-0167,Claremont Realty Partners,Property Mgmt,Worcester,Massachusetts,S. Patel,2024-03-25,Active
+C-0315,Thistle Logistics,Logistics & Distribution,Boston,MA,R. O'Donnell,09/14/2021,Active
+C-0302,Delmar School District,Education,Allentown,PA,J. Kim,04/07/2019,Active
+C-0437,Eldridge School District,K-12 / Higher Ed,Danbury,CT,S. Patel,2019-10-28,Active
+C-0553,Ustick Property Group,Property Management,Queens,New York,J. Kim,03/19/2020,Active
+C-0365,Westbrook Industries,Manufacturing,White Plains,New York,T. Alvarez,04/21/2023,Active
+C-0470,Middleton Manufacturing,Industrial/Manufacturing,Newark,NJ,R. O'Donnell,2025-06-12,Active
+C-0500,Ravenwood Industries,manufacturing,New Haven,Connecticut,R. O'Donnell,01/09/2023,Active
+C-0770,Osborne Clinic Group,Health Care,Springfield,MA,R. O'Donnell,05/16/2023,Active
+C-0503,Osborne Industries,Manufacturing,Stamford,CT,R. O'Donnell,2021-04-19,Active
+C-0596,Beacon Distribution Co,Logistics & Distribution,Norwalk,Connecticut,R. O'Donnell,08/17/2022,Active
+C-0756,Hawthorne Fabrication,Manufacturing,Newark,NJ,R. O'Donnell,2022-01-19,Active
+C-0381,Pelham Commercial Realty,Property Management,Scranton,PA,S. Patel,07/02/2025,Active
+C-0715,Upton Health System,Medical,Yonkers,NY,R. O'Donnell,05/28/2023,Active
+C-0651,Tilden Logistics,Logistics,Allentown,Pennsylvania,R. O'Donnell,12/25/2023,Active
+C-0787,Redstone Property Grp,Property Management,White Plains,NY,S. Patel,2023-10-11,Active

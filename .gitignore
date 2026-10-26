@@ -10,3 +10,4 @@ packages/db/src/generated/
 .env.*
 !.env.example
 !apps/web/.env
+.DS_Store

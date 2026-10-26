@@ -1,12 +1,12 @@
 # incepta-meridian-intelligence
 
-Local prototype for Meridian Intelligence, a Forward Deployed Engineering exercise about a fictional HVAC services company. The prototype is meant to answer three questions once the client exports are available:
+Local prototype for Meridian Intelligence, a Forward Deployed Engineering exercise about a fictional HVAC services company. The prototype is meant to answer three questions:
 
 1. What is happening to revenue, especially H1 2026?
 2. Which customers are at risk, and why?
 3. Which data quality issues affect confidence in the reported numbers?
 
-Those questions are not answered yet. This repository has the monorepo, the database, and the package boundaries. It does not invent source schemas or financial results. `data/raw/` is where the original client CSV exports belong, and it is empty.
+Those questions are not answered yet. This repository has the monorepo, the database, and the package boundaries. It does not invent financial results. The client CSV exports are in `data/raw/`. What those files contain, which issues are confirmed, and which questions are still open is written up in [docs/data-profiling.md](docs/data-profiling.md). Column parsing is not implemented yet.
 
 ## Structure
 
@@ -15,11 +15,11 @@ apps/web                 Vite + React, browser only. Port 3000. Depends only on 
 apps/api                 Fastify API. Port 3001. Composition root for the packages below.
 packages/db              Prisma schema, generated client, generate, and migrate.
 packages/pipeline        CSV import CLI. Runs without the HTTP server.
-packages/domain          Deterministic business rules. No calculations until the exports exist.
+packages/domain          Deterministic business rules. No calculations yet.
 packages/contracts       Shared Zod API contracts.
 packages/ai              LLM provider abstraction. No financial metrics.
 data/raw                 Original client CSV exports.
-docs/                    Reserved for later notes.
+docs/                    Case brief and the data-profiling note.
 ```
 
 Root files used to start the project: `pnpm-workspace.yaml`, `turbo.json`, `docker-compose.yml`, and `.env.example`.
