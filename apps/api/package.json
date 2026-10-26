@@ -1,0 +1,32 @@
+{
+  "name": "@meridian/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/server.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint src",
+    "test": "vitest run src"
+  },
+  "dependencies": {
+    "@fastify/cors": "11.3.1",
+    "@meridian/ai": "workspace:*",
+    "@meridian/contracts": "workspace:*",
+    "@meridian/db": "workspace:*",
+    "@meridian/domain": "workspace:*",
+    "@meridian/pipeline": "workspace:*",
+    "dotenv": "18.0.9",
+    "fastify": "5.12.7"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "eslint": "10.13.0",
+    "tsx": "4.23.15",
+    "@typescript/native": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

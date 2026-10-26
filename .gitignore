@@ -1,0 +1,12 @@
+node_modules/
+.pnpm-store/
+dist/
+.turbo/
+coverage/
+*.tsbuildinfo
+packages/db/src/generated/
+
+.env
+.env.*
+!.env.example
+!apps/web/.env

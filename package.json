@@ -1,0 +1,27 @@
+{
+  "name": "meridian-intelligence",
+  "private": true,
+  "packageManager": "pnpm@9.15.1",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "test": "turbo test",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:generate": "pnpm --filter @meridian/db generate",
+    "db:migrate": "pnpm --filter @meridian/db migrate",
+    "import": "pnpm --filter @meridian/pipeline run import"
+  },
+  "devDependencies": {
+    "@typescript/native": "catalog:",
+    "eslint": "10.13.0",
+    "turbo": "2.11.10",
+    "typescript": "catalog:",
+    "typescript-eslint": "8.72.0"
+  }
+}
