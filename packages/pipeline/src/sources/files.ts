@@ -46,9 +46,5 @@ export function formatImportReport(files: readonly SourceFile[]): string {
   const label = files.length === 1 ? "client export" : "client exports";
   const lines = files.map((file) => `- ${file.name} (${file.sizeBytes} bytes)`);
 
-  return [
-    `Found ${files.length} ${label}:`,
-    ...lines,
-    "Column parsing is not implemented until a schema is derived from these files.",
-  ].join("\n");
+  return [`Found ${files.length} ${label}:`, ...lines].join("\n");
 }

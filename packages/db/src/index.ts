@@ -1,5 +1,8 @@
 import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "./generated/prisma/client.js";
+import { Prisma, PrismaClient } from "./generated/prisma/client.js";
+
+export { Prisma, PrismaClient };
+export { BillingSystem, IssueSeverity, LinkStatus } from "./generated/prisma/enums.js";
 
 export function createDb(
   databaseUrl: string | undefined = process.env["DATABASE_URL"],

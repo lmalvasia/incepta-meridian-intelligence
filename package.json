@@ -15,7 +15,7 @@
     "db:down": "docker compose down",
     "db:generate": "pnpm --filter @meridian/db generate",
     "db:migrate": "pnpm --filter @meridian/db migrate",
-    "import": "pnpm --filter @meridian/pipeline run import"
+    "data:import": "pnpm --filter @meridian/pipeline run import"
   },
   "devDependencies": {
     "@typescript/native": "catalog:",

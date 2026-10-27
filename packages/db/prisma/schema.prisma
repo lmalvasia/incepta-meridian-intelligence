@@ -1,3 +1,6 @@
+// Internal ids are UUIDs. Source ids stay in their own columns.
+// Money columns use Decimal.
+
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -5,4 +8,148 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+enum BillingSystem {
+  quickbooks
+  netsuite
+}
+
+enum LinkStatus {
+  linked
+  held
+  unmatched
+}
+
+enum IssueSeverity {
+  info
+  warning
+  error
+}
+
+/// One CRM customer. displayName is a label, not an identity.
+/// sourceId is the exported customer_id, such as C-0138. It is not unique on name.
+model Customer {
+  id             String    @id @default(uuid()) @db.Uuid
+  sourceId       String    @unique
+  displayName    String
+  industry       String?
+  city           String?
+  state          String?
+  accountManager String?
+  accountStatus  String?
+  createdOn      DateTime? @db.Date
+  createdAt      DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt      DateTime  @updatedAt @db.Timestamptz(6)
+
+  invoices  Invoice[]
+  contracts Contract[]
+  notes     AccountNote[]
+  issues    DataQualityIssue[]
+}
+
+/// Invoice from QuickBooks or NetSuite.
+/// customerId is set only when linkStatus is linked. linkReason says why.
+model Invoice {
+  id              String        @id @default(uuid()) @db.Uuid
+  billingSystem   BillingSystem
+  sourceInvoiceId String
+  invoiceDate     DateTime      @db.Date
+  /// Status token as exported. QuickBooks uses Paid/Open/Overdue. NetSuite uses paid/open/void.
+  status          String
+  /// Customer cell as exported: a name in QuickBooks, a C- id in NetSuite.
+  customerRef     String
+  amount          Decimal       @db.Decimal(18, 2)
+  /// Set only when the source file has a currency column.
+  currency        String?       @db.Char(3)
+  memo            String?
+  serviceLine     String?
+  customerId      String?       @db.Uuid
+  linkStatus      LinkStatus
+  linkReason      String        @db.Text
+
+  customer Customer?          @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  issues   DataQualityIssue[]
+
+  @@unique([billingSystem, sourceInvoiceId])
+  @@index([invoiceDate])
+  @@index([customerId])
+  @@index([customerRef])
+  @@index([linkStatus])
+}
+
+/// Service contract. customerRef is the exported customer id, which may have no CRM row.
+/// endDate may be earlier than startDate. Those rows are data-quality issues, not rejected by the schema.
+model Contract {
+  id               String     @id @default(uuid()) @db.Uuid
+  sourceContractId String     @unique
+  customerRef      String
+  startDate        DateTime   @db.Date
+  endDate          DateTime   @db.Date
+  annualValue      Decimal?   @db.Decimal(18, 2)
+  /// Exported token, including its original capitalization.
+  billingFrequency String
+  /// Exported token. Null when the cell is blank.
+  autoRenew        String?
+  serviceTier      String
+  customerId       String?    @db.Uuid
+  linkStatus       LinkStatus
+  linkReason       String     @db.Text
+
+  customer Customer?          @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  issues   DataQualityIssue[]
+
+  @@index([customerRef])
+  @@index([customerId])
+  @@index([endDate])
+  @@index([linkStatus])
+}
+
+/// Account-manager note. customerName is the exported text.
+/// customerId is set only when linkStatus is linked.
+model AccountNote {
+  id           String     @id @default(uuid()) @db.Uuid
+  sourceNoteId String     @unique
+  customerName String
+  noteDate     DateTime   @db.Date
+  author       String
+  noteText     String     @db.Text
+  customerId   String?    @db.Uuid
+  linkStatus   LinkStatus
+  linkReason   String     @db.Text
+
+  customer Customer?          @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  issues   DataQualityIssue[]
+
+  @@index([customerId])
+  @@index([noteDate])
+  @@index([customerName])
+  @@index([linkStatus])
+}
+
+/// A confirmed problem on one customer, invoice, contract, or note.
+/// amountImpact is the signed dollar effect of leaving it uncorrected, when that amount is known.
+model DataQualityIssue {
+  id           String        @id @default(uuid()) @db.Uuid
+  code         String
+  severity     IssueSeverity
+  description  String        @db.Text
+  amountImpact Decimal?      @db.Decimal(18, 2)
+  customerId   String?       @db.Uuid
+  invoiceId    String?       @db.Uuid
+  contractId   String?       @db.Uuid
+  noteId       String?       @db.Uuid
+  createdAt    DateTime      @default(now()) @db.Timestamptz(6)
+  updatedAt    DateTime      @updatedAt @db.Timestamptz(6)
+
+  customer Customer?    @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  invoice  Invoice?     @relation(fields: [invoiceId], references: [id], onDelete: Restrict)
+  contract Contract?    @relation(fields: [contractId], references: [id], onDelete: Restrict)
+  note     AccountNote? @relation(fields: [noteId], references: [id], onDelete: Restrict)
+
+  @@index([code])
+  @@index([customerId])
+  @@index([invoiceId])
+  @@index([contractId])
+  @@index([noteId])
 }

@@ -27,7 +27,7 @@ describe("package boundaries", () => {
   it("keeps workspace dependencies one-directional", () => {
     expect(workspaceNames(readPackage("packages/contracts"))).toEqual([]);
     expect(workspaceNames(readPackage("packages/domain"))).toEqual([]);
-    expect(workspaceNames(readPackage("packages/pipeline"))).toEqual([]);
+    expect(workspaceNames(readPackage("packages/pipeline"))).toEqual(["@meridian/db"]);
     expect(workspaceNames(readPackage("packages/db"))).toEqual([]);
     expect(workspaceNames(readPackage("packages/ai"))).toEqual([]);
     expect(workspaceNames(readPackage("apps/web"))).toEqual(["@meridian/contracts"]);

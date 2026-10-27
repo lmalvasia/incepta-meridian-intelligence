@@ -2,8 +2,8 @@ import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { defaultSourceDirectory } from "./repo.js";
-import { formatImportReport, listSourceFiles } from "./source-files.js";
+import { formatImportReport, listSourceFiles } from "../../sources/files.js";
+import { defaultSourceDirectory } from "../../sources/repo.js";
 
 describe("listSourceFiles", () => {
   let directory: string | undefined;
@@ -40,11 +40,7 @@ describe("formatImportReport", () => {
 
   it("names files without parsing columns", () => {
     expect(formatImportReport([{ name: "customers.csv", sizeBytes: 12 }])).toBe(
-      [
-        "Found 1 client export:",
-        "- customers.csv (12 bytes)",
-        "Column parsing is not implemented until a schema is derived from these files.",
-      ].join("\n"),
+      ["Found 1 client export:", "- customers.csv (12 bytes)"].join("\n"),
     );
   });
 });
