@@ -39,11 +39,12 @@ describe("resolveCustomerName", () => {
     expect(longford.reason).toContain("No customer link was stored.");
   });
 
-  it("holds a unique prefix", () => {
+  it("links a unique prefix and says the link is not an id match", () => {
     const yale = resolveCustomerName("Yale Park", parties);
-    expect(yale).toMatchObject({ status: "held", customerSourceId: null });
+    expect(yale).toMatchObject({ status: "linked", customerSourceId: "C-1111" });
     expect(yale.reason).toContain("C-1111");
-    expect(yale.reason).toContain("No customer link was stored.");
+    expect(yale.reason).toContain("name prefix, not an id match");
+    expect(yale.reason).not.toContain("No customer link was stored.");
   });
 
   it("holds a Group/Grp difference", () => {

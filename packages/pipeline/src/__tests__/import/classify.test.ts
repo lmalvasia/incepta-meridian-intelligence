@@ -237,8 +237,8 @@ describe("buildImportPlan", () => {
     expect(redstone?.link.reason).toContain("C-0307");
     expect(redstone?.link.reason).toContain("C-0787");
     const yale = notes.notes.find((note) => note.sourceNoteId === "N-2");
-    expect(yale?.link).toMatchObject({ status: "held", customerSourceId: null });
-    expect(yale?.link.reason).toContain("C-1111");
+    expect(yale?.link).toMatchObject({ status: "linked", customerSourceId: "C-1111" });
+    expect(yale?.link.reason).toContain("name prefix, not an id match");
     const prospect = notes.notes.find((note) => note.sourceNoteId === "N-3");
     expect(prospect?.link.status).toBe("unmatched");
     expect(codes(notes, "N-3")).toContain(IssueCode.unmatchedCustomerName);

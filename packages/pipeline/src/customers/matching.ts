@@ -89,8 +89,9 @@ export function resolveSourceId(sourceId: string, known: boolean, acceptedReason
 
 /**
  * One decision for a source name.
- * A sole normalized name links only when no prefix or Group/Grp neighbor exists.
- * Any other candidate is held, and no candidate stays unmatched.
+ * A sole normalized name links when no prefix or Group/Grp neighbor exists.
+ * A sole token-boundary prefix also links. The reason says it is not an id match.
+ * A Group/Grp spelling, or more than one candidate, is held. No candidate stays unmatched.
  */
 export function resolveCustomerName(rawName: string, parties: readonly CrmParty[]): LinkDecision {
   const normalized = normalizeName(rawName);
@@ -105,6 +106,15 @@ export function resolveCustomerName(rawName: string, parties: readonly CrmParty[
       status: "linked",
       customerSourceId: party.sourceId,
       reason: candidateSentence(normalized, { party, kind: "exact" }),
+    };
+  }
+
+  const solePrefix = exact.length === 0 && weaker.length === 1 ? weaker[0] : undefined;
+  if (solePrefix !== undefined && solePrefix.kind === "prefix") {
+    return {
+      status: "linked",
+      customerSourceId: solePrefix.party.sourceId,
+      reason: `${candidateSentence(normalized, solePrefix)} The link is a name prefix, not an id match.`,
     };
   }
 

@@ -42,7 +42,7 @@ Running the command again updates the CRM customers that are already stored and 
 
 Similar names do not share a canonical id. There is no unique constraint on `displayName`. The decision order, the real examples, and the counts from these files are in [customer-matching.md](customer-matching.md).
 
-An exact source id, or one normalized name with no near-duplicate, is `linked`. A prefix, a Group/Grp spelling, or more than one candidate is `held`. No candidate is `unmatched`. Two CRM ids that share a name stay two customers, each with a `possible_duplicate_customer` issue.
+An exact source id, one normalized name with no near-duplicate, or one token-boundary prefix is `linked`. A sole prefix says in `linkReason` that the link is a name prefix, not an id match. A Group/Grp spelling, or more than one candidate, is `held`. No candidate is `unmatched`. Two CRM ids that share a name stay two customers, each with a `possible_duplicate_customer` issue.
 
 ## Money
 

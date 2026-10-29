@@ -64,7 +64,7 @@ A `types.ts` file contains only types. `classify.ts` reads the CSV. `write.ts` p
 | NetSuite and QuickBooks | one invoice per invoice id |
 | `account_notes.csv` | one note per note id |
 
-A kept row can also get a data-quality issue. A QuickBooks or note name that normalizes to one CRM customer, with no near-duplicate, sets `customerId` and `linkStatus = linked`. A prefix, a Group/Grp spelling, or more than one candidate is `held` and leaves `customerId` null. A name or id with no candidate is `unmatched`.
+A kept row can also get a data-quality issue. A QuickBooks or note name that normalizes to one CRM customer, with no near-duplicate, sets `customerId` and `linkStatus = linked`. A sole token-boundary prefix does too, and `linkReason` says the link is a name prefix, not an id match. A Group/Grp spelling, or more than one candidate, is `held` and leaves `customerId` null. A name or id with no candidate is `unmatched`.
 
 ## Counts
 

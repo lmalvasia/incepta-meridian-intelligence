@@ -12,7 +12,7 @@ Candidates are sorted by CRM `sourceId`. The same files always produce the same 
 
 3. **Near-duplicate.** An exact name that also has a prefix or Group/Grp neighbor is `held`. `linkReason` names both ids and `customerId` stays null. `Dunmore Shopping Centers` equals `C-0248` and is a prefix of `C-0784`. `Redstone Property Group` equals `C-0307` and differs from `C-0787` only by Group/Grp.
 
-4. **Prefix and Group/Grp.** A token-boundary prefix or a trailing Group/Grp difference is `held`. It is never linked. `Yale Park` is held against `C-0744` Yale Park College. `Redstone Property` is a prefix of both `C-0307` and `C-0787`.
+4. **Prefix and Group/Grp.** A token-boundary prefix of exactly one CRM customer is `linked`. `linkReason` says the link is a name prefix, not an id match. `Yale Park` links to `C-0744` Yale Park College. A trailing Group/Grp difference stays `held`. `Redstone Property` is a prefix of both `C-0307` and `C-0787`, so it stays `held`.
 
 5. **Unmatched.** No candidate. QuickBooks: `Brixton Clinic Group`, `Emberly Property Group`, `Foxhall Clinic Group`, `Rockville Commercial Realty`. Notes: `Pinnacle Office REIT`, `Garden State Cold Storage`, `Metro North Facilities`. The four ids above are unmatched in both NetSuite and contracts.
 
@@ -22,11 +22,11 @@ CRM ids that share a normalized name, a token-boundary prefix, or a Group/Grp sp
 
 | `linkStatus` | When | `customerId` |
 | --- | --- | --- |
-| `linked` | Exact id, or one normalized name with no near-duplicate | Set |
-| `held` | More than one candidate, a prefix, or Group/Grp | Null |
+| `linked` | Exact id, one normalized name with no near-duplicate, or one token-boundary prefix | Set |
+| `held` | More than one candidate, or a Group/Grp spelling | Null |
 | `unmatched` | No candidate | Null |
 
-`linkReason` is the sentence that names the CRM ids, or says that none matched. An ambiguous name raises `ambiguous_customer_name` on every invoice or note in that group. An unmatched name or id raises `unmatched_customer_name` or `unknown_customer_ref` on the earliest row only. A single prefix does not raise an issue. The status is still `held`.
+`linkReason` is the sentence that names the CRM ids, or says that none matched. A sole prefix adds that the link is a name prefix, not an id match. An ambiguous name raises `ambiguous_customer_name` on every invoice or note in that group. An unmatched name or id raises `unmatched_customer_name` or `unknown_customer_ref` on the earliest row only. A single prefix does not raise an issue.
 
 `VERONA INDUSTRIES` and `  Verona   Industries ` are different exported strings. Both can link to `C-0277`. The original text stays on `customerRef` or `customerName`.
 
@@ -39,14 +39,14 @@ CRM ids that share a normalized name, a token-boundary prefix, or a Group/Grp sp
 | Contracts | 161 identities, 161 contracts | 0 | 4 identities, 4 contracts |
 | NetSuite | 169 identities, 3,961 invoices | 0 | 4 identities, 100 invoices |
 | QuickBooks | 183 identities, 2,287 invoices | 26 identities, 201 invoices | 4 identities, 71 invoices |
-| Account notes | 105 identities, 224 notes | 32 identities, 36 notes | 3 identities, 3 notes |
-| Total | 618 identities, $101,220,377.11 | 58 identities, $2,079,229.29 | 15 identities, $1,652,940.04 |
+| Account notes | 128 identities, 248 notes | 9 identities, 12 notes | 3 identities, 3 notes |
+| Total | 641 identities, $101,220,377.11 | 35 identities, $2,079,229.29 | 15 identities, $1,652,940.04 |
 
 NetSuite holds $63,256,506.41 linked and $973,202.61 unmatched. QuickBooks holds $37,963,870.70 linked, $2,079,229.29 held, and $679,737.43 unmatched.
 
 Twenty-four CRM customers are near-duplicates of another CRM customer. They stay separate. The import prints the same identity totals, plus the invoice dollars in each status.
 
-The QuickBooks unmatched identities are the four names above, and the 71 invoices are the rows behind them. The issue is stored on the earliest invoice of each name. Held QuickBooks rows are the Longford, Overlook, and Kestrel spellings plus both sides of the prefix and Group/Grp pairs. The 32 held note identities are nine ambiguous names and 23 unique prefixes such as `Yale Park`. `Kirkwood Preparatory` is one identity and two notes.
+The QuickBooks unmatched identities are the four names above, and the 71 invoices are the rows behind them. The issue is stored on the earliest invoice of each name. Held QuickBooks rows are the Longford, Overlook, and Kestrel spellings plus both sides of the prefix and Group/Grp pairs. Held notes are nine ambiguous names and 12 notes: Dunmore Shopping Centers, Gladstone Property Group, Longford Shopping Centers, Lowell Warehousing (two spellings), Overlook Shopping Centers, Quantock Hospitality Group (three notes), Redstone Property (two notes), and Redstone Property Group. The 23 unique prefixes, including `Yale Park` and `Kirkwood Preparatory` (two notes), are linked. The reason says the link is a name prefix, not an id match.
 
 ## How to inspect
 

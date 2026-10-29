@@ -99,14 +99,14 @@ describe("client exports", () => {
     expect(redstone?.link.reason).toContain("C-0307");
     expect(redstone?.link.reason).toContain("C-0787");
     const yale = note(notes, "Yale Park");
-    expect(yale?.link.status).toBe("held");
-    expect(yale?.link.reason).toContain("C-0744");
+    expect(yale?.link).toMatchObject({ status: "linked", customerSourceId: "C-0744" });
+    expect(yale?.link.reason).toContain("name prefix, not an id match");
     expect(note(notes, "Pinnacle Office REIT")?.link.status).toBe("unmatched");
 
     const report = summarizeLinks(plan);
     expect(report.crmNearDuplicates).toBe(24);
-    expect(report.linked.identities).toBe(618);
-    expect(report.held.identities).toBe(58);
+    expect(report.linked.identities).toBe(641);
+    expect(report.held.identities).toBe(35);
     expect(report.unmatched.identities).toBe(15);
     expect(report.linked.dollars).toBe("101220377.11");
     expect(report.held.dollars).toBe("2079229.29");
@@ -132,8 +132,8 @@ describe("client exports", () => {
       },
       {
         source: "account_notes.csv",
-        linked: { identities: 105, dollars: "0.00" },
-        held: { identities: 32, dollars: "0.00" },
+        linked: { identities: 128, dollars: "0.00" },
+        held: { identities: 9, dollars: "0.00" },
         unmatched: { identities: 3, dollars: "0.00" },
       },
     ]);
