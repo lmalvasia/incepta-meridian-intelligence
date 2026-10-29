@@ -24,11 +24,11 @@ flowchart TD
 
 The model receives a note id and the note text. It returns one category from a closed list and one sentence. A category outside the list is dropped. The result is stored in `NoteClassification`, keyed by the exported note id and the model. A later import classifies a note again only when its text changed.
 
-Opening Accounts reads those saved rows. It does not call the model. The Note tag on an account is the saved category. The Quote column is the original note text. If several linked notes belong to one account, the strongest category stays. A note held between two customer ids is classified and counted, and it does not put a tag on either row.
+Opening Accounts reads those saved rows. It does not call the model. The Note tag on an account is the saved category. The Note column is the original note text. If several linked notes belong to one account, the account list keeps one. A saved model category beats an unclassified note. Then the stronger category wins: competitor, non-renewal, service, billing, price, prospect, positive, routine. The same category keeps the lower note id. The account page lists every linked note and marks the one on the list. Competitor, non-renewal, service, billing, and price put the account in To review. Prospect, positive, and routine do not. A note held between two customer ids is classified and counted, and it does not put a tag on either row.
 
 ## The phrase count
 
-`GET /notes/coverage` compares saved categories with phrases already in the note text, such as Therma-Serv or prospect meeting. The message looks like "Agrees with known phrases on 119 of 152 notes." That number is calculated on the request. It is not stored, and it does not change the tag. Accounts shows the message under the title. The notes where the phrase and the model disagree are the ones to read in the quote before trusting the tag.
+`GET /notes/coverage` compares saved categories with phrases already in the note text, such as Therma-Serv or prospect meeting. The message looks like "Agrees with known phrases on 119 of 152 notes." That number is calculated on the request. It is not stored, and it does not change the tag. Accounts shows it on the Note model card. The notes where the phrase and the model disagree are the ones to read before trusting the tag.
 
 ## Quick analysis
 

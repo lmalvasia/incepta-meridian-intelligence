@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useParams } from "react-router";
 import { AccountContracts } from "../components/accounts/AccountContracts";
+import { AccountNotes } from "../components/accounts/AccountNotes";
 import { InvoiceTable } from "../components/accounts/InvoiceTable";
 import { YearFilter } from "../components/accounts/YearFilter";
 import { InfoTip } from "../components/InfoTip";
@@ -11,29 +12,40 @@ import { useAccountInvoices } from "../hooks/useAccountInvoices";
 import type { AccountInvoicesResponse } from "../types/dashboard";
 import { info } from "../utils/info";
 import { formatMoney } from "../utils/money";
+import { cn } from "@/lib/utils";
 
 export function AccountPage() {
   const params = useParams();
   const sourceId = params.sourceId ?? "";
   const invoices = useAccountInvoices(sourceId);
   const [year, setYear] = useState("all");
+  const [tab, setTab] = useState<AccountTab>("invoices");
   return (
     <>
       <PageLink to="/accounts">All accounts</PageLink>
       <PageState query={invoices}>
-        {(data) => <AccountInvoices data={data} year={year} onYear={setYear} />}
+        {(data) => <AccountInvoices data={data} year={year} onYear={setYear} tab={tab} onTab={setTab} />}
       </PageState>
     </>
   );
 }
 
+type AccountTab = "invoices" | "notes";
+
+const tabs: Array<{ id: AccountTab; label: string }> = [
+  { id: "invoices", label: "Invoices" },
+  { id: "notes", label: "Notes" },
+];
+
 type AccountInvoicesProps = {
   data: AccountInvoicesResponse;
   year: string;
   onYear: (year: string) => void;
+  tab: AccountTab;
+  onTab: (tab: AccountTab) => void;
 };
 
-function AccountInvoices({ data, year, onYear }: AccountInvoicesProps) {
+function AccountInvoices({ data, year, onYear, tab, onTab }: AccountInvoicesProps) {
   const years = useMemo(
     () => [...new Set(data.invoices.map((invoice) => invoice.invoiceDate.slice(0, 4)))].sort(),
     [data.invoices],
@@ -42,13 +54,39 @@ function AccountInvoices({ data, year, onYear }: AccountInvoicesProps) {
   const name = data.displayName.length === 0 ? "No CRM name" : data.displayName;
   return (
     <>
-      <div className="flex items-start justify-between gap-3">
-        <PageHeader title={name} description={`${data.sourceId}. ${visible.length.toString()} invoices, ${formatMoney(sum(visible))}.`} />
-        <InfoTip text={info.invoices} />
-      </div>
+      <PageHeader title={name} description={data.sourceId} />
       <AccountContracts contracts={data.contracts} />
-      <YearFilter years={years} year={year} onChange={onYear} />
-      <InvoiceTable invoices={visible} />
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div className="flex flex-wrap gap-1" role="tablist">
+          {tabs.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              role="tab"
+              aria-selected={item.id === tab}
+              className={cn(
+                "rounded-lg px-3 py-1.5 text-sm",
+                item.id === tab ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:text-foreground",
+              )}
+              onClick={() => onTab(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+        {tab === "invoices" ? <InfoTip text={info.invoices} /> : null}
+        {tab === "notes" ? <InfoTip text={info.accountNotes} /> : null}
+      </div>
+      {tab === "invoices" ? (
+        <>
+          <p className="text-sm text-muted-foreground">
+            {visible.length.toString()} invoices, {formatMoney(sum(visible))}.
+          </p>
+          <YearFilter years={years} year={year} onChange={onYear} />
+          <InvoiceTable invoices={visible} />
+        </>
+      ) : null}
+      {tab === "notes" ? <AccountNotes notes={data.notes} /> : null}
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { QuickAnalysis } from "../components/analysis/QuickAnalysis";
 import { PageHeader } from "../components/PageHeader";
 import { PageState } from "../components/PageState";
 import { HalfComparison } from "../components/overview/HalfComparison";
@@ -13,7 +14,7 @@ export function OverviewPage() {
   const customers = useCustomers();
   const quality = useQuality();
   return (
-    <>
+    <div className="flex flex-col gap-6 pb-16">
       <PageHeader title="Overview" description="H1 2026 through June 28, compared with H1 2025." />
       <PageState query={revenue}>
         {(data) => (
@@ -25,6 +26,7 @@ export function OverviewPage() {
       </PageState>
       <PageState query={quality}>{(data) => <QualityCounts quality={data} />}</PageState>
       <PageState query={customers}>{(data) => <WatchPreview customers={data} />}</PageState>
-    </>
+      <QuickAnalysis />
+    </div>
   );
 }

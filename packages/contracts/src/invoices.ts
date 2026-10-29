@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { noteCategorySchema } from "./categories.js";
 
 export const accountInvoiceSchema = z.object({
   sourceInvoiceId: z.string(),
@@ -19,11 +20,20 @@ export const accountContractSchema = z.object({
   stillBilling: z.boolean(),
 });
 
+export const accountNoteSchema = z.object({
+  sourceNoteId: z.string(),
+  noteDate: z.string(),
+  noteText: z.string(),
+  category: noteCategorySchema,
+  chosen: z.boolean(),
+});
+
 export const accountInvoicesResponseSchema = z.object({
   sourceId: z.string(),
   displayName: z.string(),
   invoices: z.array(accountInvoiceSchema),
   contracts: z.array(accountContractSchema),
+  notes: z.array(accountNoteSchema),
 });
 
 export type AccountInvoicesResponse = z.infer<typeof accountInvoicesResponseSchema>;

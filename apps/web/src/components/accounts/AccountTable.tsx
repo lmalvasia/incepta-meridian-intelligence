@@ -21,12 +21,11 @@ export function AccountTable({ accounts, onTag }: AccountTableProps) {
         <TableHeader>
           <TableRow>
             <TableHead>Account</TableHead>
-            <TableHead>Flags</TableHead>
-            <TableHead>Note</TableHead>
+            <TableHead>Tags</TableHead>
             <TableHead>H1 2025</TableHead>
             <TableHead>H1 2026</TableHead>
             <TableHead>Change</TableHead>
-            <TableHead>Quote</TableHead>
+            <TableHead>Note</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -38,10 +37,7 @@ export function AccountTable({ accounts, onTag }: AccountTableProps) {
                 </Link>
               </TableCell>
               <TableCell className="align-top">
-                <AccountTags account={account} kind="flag" onSelect={onTag} />
-              </TableCell>
-              <TableCell className="align-top">
-                <AccountTags account={account} kind="note" onSelect={onTag} />
+                <AccountTags account={account} onSelect={onTag} />
               </TableCell>
               <TableCell className="align-top">{formatMoney(account.priorBilled)}</TableCell>
               <TableCell className="align-top">{formatMoney(account.currentBilled)}</TableCell>

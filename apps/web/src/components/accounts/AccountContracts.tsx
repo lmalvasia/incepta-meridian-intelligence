@@ -10,7 +10,6 @@ type AccountContractsProps = {
 export function AccountContracts({ contracts }: AccountContractsProps) {
   return (
     <section className="flex flex-col gap-3">
-      <h2 className="text-sm font-medium">Contracts</h2>
       {contracts.length === 0 ? <p className="text-sm text-muted-foreground">No contract on this account.</p> : null}
       {contracts.map((contract) => (
         <article key={contract.sourceContractId} className="flex flex-col gap-2 rounded-xl bg-card p-4 ring-1 ring-foreground/10">

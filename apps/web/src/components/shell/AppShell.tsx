@@ -1,5 +1,4 @@
 import { NavLink, Outlet } from "react-router";
-import { QuickAnalysis } from "../analysis/QuickAnalysis";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
@@ -40,10 +39,9 @@ export function AppShell() {
           </div>
         </div>
       </header>
-      <main className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-8 pb-24">
+      <main className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-8">
         <Outlet />
       </main>
-      <QuickAnalysis />
     </div>
   );
 }

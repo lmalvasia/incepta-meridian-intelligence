@@ -94,6 +94,7 @@ describe("dashboard routes", () => {
       sourceId: "C-0105",
       invoices: [{ sourceInvoiceId: "INV-1", amount: "105.00" }],
       contracts: [{ sourceContractId: "CTR-1", state: "open", stillBilling: true, autoRenew: "Yes" }],
+      notes: [{ sourceNoteId: "N-1", category: "unlabeled", chosen: true }],
     });
   });
 

@@ -5,6 +5,8 @@ export const domain = {
 export { contractsForAccount } from "./account-contracts.js";
 export type { AccountContract, ContractState } from "./account-contracts.js";
 export { invoicesForAccount } from "./account-invoices.js";
+export { notesForAccount } from "./account-notes.js";
+export type { AccountNote } from "./account-notes.js";
 export { buildAccounts } from "./customers.js";
 export type { AccountRow, ReviewReason } from "./customers.js";
 export { noteCoverage } from "./coverage.js";

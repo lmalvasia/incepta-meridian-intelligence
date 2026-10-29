@@ -1,5 +1,7 @@
+import type { NoteCoverageResponse } from "@meridian/contracts";
 import { useSearchParams } from "react-router";
 import { AccountFilter, type AccountView } from "../components/accounts/AccountFilter";
+import { NoteModel, ReviewSplit } from "../components/accounts/AccountSummary";
 import { AccountTable } from "../components/accounts/AccountTable";
 import { TagBar } from "../components/accounts/TagBar";
 import { PageHeader } from "../components/PageHeader";
@@ -19,13 +21,14 @@ export function AccountsPage() {
     <>
       <PageHeader
         title="Accounts"
-        description="Every customer. Choose a tag to see what it marks. Open one to see its invoices."
+        description="Every customer. Tags mark who needs a look. Open a row to see its invoices."
       />
-      {coverage.data === undefined ? null : <p className="text-sm text-muted-foreground">{coverage.data.message}</p>}
       <PageState query={customers}>
         {(data) => (
           <AccountBook
             accounts={data.accounts}
+            coverage={coverage.data}
+            coverageFailed={coverage.isError}
             view={view}
             tag={tag}
             onView={(next) => setParams(searchParams(next, tag))}
@@ -39,21 +42,29 @@ export function AccountsPage() {
 
 type AccountBookProps = {
   accounts: AccountResponse[];
+  coverage: NoteCoverageResponse | undefined;
+  coverageFailed: boolean;
   view: AccountView;
   tag: AccountTagId | null;
   onView: (view: AccountView) => void;
   onTag: (tag: AccountTagId | null) => void;
 };
 
-function AccountBook({ accounts, view, tag, onView, onTag }: AccountBookProps) {
+function AccountBook({ accounts, coverage, coverageFailed, view, tag, onView, onTag }: AccountBookProps) {
   const review = accounts.filter((account) => account.onWatchList);
   const clear = accounts.filter((account) => !account.onWatchList);
   const inView = view === "review" ? review : view === "clear" ? clear : accounts;
   const visible = tag === null ? inView : inView.filter((account) => tagsForAccount(account).some((item) => item.id === tag));
   return (
     <>
-      <AccountFilter view={view} counts={{ all: accounts.length, review: review.length, clear: clear.length }} onChange={onView} />
-      <TagBar accounts={inView} selected={tag} onSelect={onTag} />
+      <div className="grid gap-4 md:grid-cols-2">
+        <ReviewSplit review={review.length} clear={clear.length} view={view} onView={onView} />
+        <NoteModel coverage={coverage} failed={coverageFailed} />
+      </div>
+      <div className="flex flex-wrap items-center gap-2">
+        <AccountFilter view={view} counts={{ all: accounts.length, review: review.length, clear: clear.length }} onChange={onView} />
+        <TagBar accounts={inView} selected={tag} onSelect={onTag} />
+      </div>
       <AccountTable accounts={visible} onTag={onTag} />
     </>
   );
