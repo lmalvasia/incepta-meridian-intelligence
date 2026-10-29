@@ -65,7 +65,13 @@ describe("dashboard routes", () => {
   });
 
   it("returns billed figures and leaves note categories unclassified when no model is configured", async () => {
-    app = await buildApp(fixtureContext(async () => ({ status: "unavailable", reason: "No LLM provider is configured." })));
+    let classifyCalls = 0;
+    app = await buildApp(
+      fixtureContext(async () => {
+        classifyCalls += 1;
+        return { status: "unavailable", reason: "No LLM provider is configured." };
+      }),
+    );
 
     const revenue = await app.inject({ method: "GET", url: "/revenue" });
     const customers = await app.inject({ method: "GET", url: "/customers" });
@@ -76,6 +82,12 @@ describe("dashboard routes", () => {
     const body = customersResponseSchema.parse(customers.json());
     expect(body.coverage.message).toBe("Note categories are not saved. No model has classified these notes.");
     expect(body.accounts[0]).toMatchObject({ sourceId: "C-0105", categorySource: "none", onWatchList: false });
+    const coverage = await app.inject({ method: "GET", url: "/notes/coverage" });
+    expect(coverage.statusCode).toBe(200);
+    expect(coverage.json()).toMatchObject({
+      message: "Note categories are not saved. No model has classified these notes.",
+    });
+    expect(classifyCalls).toBe(0);
     const invoices = await app.inject({ method: "GET", url: "/customers/C-0105/invoices" });
     expect(invoices.statusCode).toBe(200);
     expect(invoices.json()).toMatchObject({

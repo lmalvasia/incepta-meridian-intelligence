@@ -5,11 +5,13 @@ import { TagBar } from "../components/accounts/TagBar";
 import { PageHeader } from "../components/PageHeader";
 import { PageState } from "../components/PageState";
 import { useCustomers } from "../hooks/useCustomers";
+import { useNoteCoverage } from "../hooks/useNoteCoverage";
 import type { AccountResponse } from "../types/dashboard";
 import { tagById, tagsForAccount, type AccountTagId } from "../utils/account-tags";
 
 export function AccountsPage() {
   const customers = useCustomers();
+  const coverage = useNoteCoverage();
   const [params, setParams] = useSearchParams();
   const view = accountView(params.get("view"));
   const tag = tagById(params.get("tag"))?.id ?? null;
@@ -19,6 +21,7 @@ export function AccountsPage() {
         title="Accounts"
         description="Every customer. Choose a tag to see what it marks. Open one to see its invoices."
       />
+      {coverage.data === undefined ? null : <p className="text-sm text-muted-foreground">{coverage.data.message}</p>}
       <PageState query={customers}>
         {(data) => (
           <AccountBook

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { noteCategorySchema } from "./categories.js";
+import { noteCoverageResponseSchema } from "./coverage.js";
 
 export const accountSchema = z.object({
   sourceId: z.string(),
@@ -23,13 +24,7 @@ export const accountSchema = z.object({
 
 export const customersResponseSchema = z.object({
   accounts: z.array(accountSchema),
-  coverage: z.object({
-    source: z.enum(["model", "phrases"]),
-    classified: z.number(),
-    total: z.number(),
-    agreement: z.object({ matched: z.number(), known: z.number() }).nullable(),
-    message: z.string(),
-  }),
+  coverage: noteCoverageResponseSchema,
   changedSinceLastRun: z.boolean(),
 });
 

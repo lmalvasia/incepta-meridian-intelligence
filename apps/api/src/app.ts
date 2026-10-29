@@ -3,6 +3,7 @@ import { healthResponseSchema } from "@meridian/contracts";
 import Fastify, { type FastifyInstance } from "fastify";
 import type { AppContext } from "./composition.js";
 import { registerCustomers } from "./routes/customers.js";
+import { registerNoteCoverage } from "./routes/note-coverage.js";
 import { registerInvoices } from "./routes/invoices.js";
 import { registerQuality } from "./routes/quality.js";
 import { registerRevenue } from "./routes/revenue.js";
@@ -27,6 +28,7 @@ export async function buildApp(
 
   registerRevenue(app, context);
   registerCustomers(app, context);
+  registerNoteCoverage(app, context);
   registerInvoices(app, context);
   registerQuality(app, context);
   registerRevenueAnalysis(app, context);

@@ -1,6 +1,8 @@
 export { revenueAnalysisResponseSchema } from "./analysis.js";
 export type { RevenueAnalysisResponse } from "./analysis.js";
 export { noteCategorySchema } from "./categories.js";
+export { noteCoverageResponseSchema } from "./coverage.js";
+export type { NoteCoverageResponse } from "./coverage.js";
 export { accountSchema, customersResponseSchema } from "./customers.js";
 export type { AccountResponse, CustomersResponse } from "./customers.js";
 export { accountInvoicesResponseSchema } from "./invoices.js";

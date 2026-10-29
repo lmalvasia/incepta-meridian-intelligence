@@ -3,20 +3,19 @@ import { buildAccounts, buildRevenue } from "@meridian/domain";
 import type { FastifyInstance } from "fastify";
 import { revenueFacts } from "../analysis/facts.js";
 import { resolveAnalysis } from "../analysis/resolve-analysis.js";
-import { resolveNotes } from "../analysis/resolve-notes.js";
+import { savedModelNotes } from "../analysis/saved-notes.js";
 import { signalLines } from "../analysis/signals.js";
 import type { AppContext } from "../composition.js";
 
 export function registerRevenueAnalysis(app: FastifyInstance, context: AppContext): void {
   app.post("/revenue/analysis", async () => {
     const snapshot = await context.loadSnapshot();
-    const resolved = await resolveNotes(
+    const modelNotes = await savedModelNotes(
       context.noteRecords,
       context.modelName,
       snapshot.notes.map((note) => ({ noteId: note.sourceNoteId, text: note.noteText })),
-      (pending) => context.classifyNotes(pending),
     );
-    const accounts = buildAccounts({ ...snapshot, modelNotes: resolved.notes });
+    const accounts = buildAccounts({ ...snapshot, modelNotes });
     const base = revenueFacts(buildRevenue(snapshot.invoices, snapshot.collapsedCopies));
     const facts = { text: [base.text, "", ...signalLines(accounts)].join("\n"), allowedAmounts: base.allowedAmounts };
     const result = await resolveAnalysis(context.analysisRecords, context.modelName, facts, (next) =>

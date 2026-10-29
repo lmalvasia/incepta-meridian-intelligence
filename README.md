@@ -6,7 +6,7 @@ Local prototype for Meridian Intelligence, a Forward Deployed Engineering exerci
 2. Which customers are at risk, and why?
 3. Which data quality issues affect confidence in the reported numbers?
 
-Those questions are not answered yet. This repository has the monorepo, the database, and the CSV import. It does not invent financial results. The client CSV exports are in `data/raw/`. What those files contain, which issues are confirmed, and which questions are still open is written up in [docs/data-profiling.md](docs/data-profiling.md).
+The dashboard answers those questions from the invoice dates, the saved note categories, and the data-quality list. The client CSV exports are in `data/raw/`. What those files contain, which issues are confirmed, and which questions are still open is written up in [docs/data-profiling.md](docs/data-profiling.md). How the model is used is written in [docs/model.md](docs/model.md).
 
 ## Structure
 
@@ -15,7 +15,7 @@ apps/web                 Vite + React, browser only. Port 3000. Depends only on 
 apps/api                 Fastify API. Port 3001. Composition root for the packages below.
 packages/db              Prisma schema, generated client, generate, and migrate.
 packages/pipeline        CSV import CLI. Runs without the HTTP server. `pnpm run data:import`.
-packages/domain          Deterministic business rules. No calculations yet.
+packages/domain          Deterministic business rules.
 packages/contracts       Shared Zod API contracts.
 packages/ai              LLM provider abstraction. No financial metrics.
 data/raw                 Original client CSV exports.
@@ -90,7 +90,7 @@ Turborepo schedules tasks across the workspace. The web app is a client-side Rea
 
    `npm run data:import` runs the same script. `pnpm import` is pnpm's lockfile converter, so the command includes `run`.
 
-   The command reads the five CSV files in `data/raw/` and does not modify them. It prints one line per file with rows read, skipped, flagged, and written, then the totals, the identical copies that were collapsed, and how many source parties were linked, held, or left unmatched, with the invoice dollars in each status.
+   The command reads the five CSV files in `data/raw/` and does not modify them. It prints one line per file with rows read, skipped, flagged, and written, then the totals, the identical copies that were collapsed, and how many source parties were linked, held, or left unmatched, with the invoice dollars in each status. It then classifies account notes when `AI_API_KEY` is set. Without that key, the CSV load still finishes and the command prints that classification was skipped.
 
    Issues on a stored row do not fail the command. A missing file or an unexpected column does, and the process exits non-zero. A second run replaces the invoices, contracts, and notes with the same source ids and does not insert a second copy.
 
@@ -130,6 +130,22 @@ Turborepo schedules tasks across the workspace. The web app is a client-side Rea
    ```sh
    pnpm db:down
    ```
+
+## Tools
+
+Cursor was used to analyze and implement:
+
+- the ETL
+- customer matching
+- the database, the API, and the web app
+
+The model that runs inside the product is separate. It classifies notes during import and writes the quick-analysis paragraph. See [docs/model.md](docs/model.md).
+
+## Not in this MVP
+
+- Simple authentication. The app runs on localhost and has no login.
+- Automatic pipelines and a run log. Import is a manual command. A second run replaces invoices, contracts, and notes. It does not record when it ran, and it does not keep a person's decision.
+- Extra endpoints that start AI work from the dashboard, such as classifying notes again or asking for another paragraph. Get a quick analysis stays. Those other endpoints are not built.
 
 ## Other commands
 
