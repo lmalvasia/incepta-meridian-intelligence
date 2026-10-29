@@ -153,3 +153,30 @@ model DataQualityIssue {
   @@index([contractId])
   @@index([noteId])
 }
+
+/// Model reading of one note. Keyed by the exported note id, not the AccountNote row,
+/// because a reimport deletes and recreates that row.
+model NoteClassification {
+  id           String   @id @default(uuid()) @db.Uuid
+  sourceNoteId String
+  model        String
+  textHash     String
+  category     String
+  line         String   @db.Text
+  classifiedAt DateTime @default(now()) @db.Timestamptz(6)
+
+  @@unique([sourceNoteId, model])
+  @@index([model])
+}
+
+/// One ready analysis for a model and a hash of the billed figures.
+model SavedAnalysis {
+  id        String   @id @default(uuid()) @db.Uuid
+  model     String
+  factsHash String
+  focus     String
+  text      String   @db.Text
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+
+  @@unique([model, factsHash])
+}
